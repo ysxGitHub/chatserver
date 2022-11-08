@@ -86,7 +86,7 @@ MySQL服务相关命令
 mysql配置参考: [CNDS](https://blog.csdn.net/qq_28374489/article/details/123091635)
 
 
-##### MySQLConnectionPool
+#### MySQLConnectionPool
 可以参考 [苏老师](https://www.bilibili.com/video/BV1Fr4y1s7w4/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click)的课程，数据库连接池整体就是一个生产者与消费者模型，使用了单例模式。
 
 
@@ -187,11 +187,11 @@ redis配置参考 [BLOG](https://www.cnblogs.com/look-word/p/16593094.html)
 
 ![Class Structure](./png/Muduo.png)
 
-##### Class Structure
+#### Class Structure
 
 ![Class Structure](./png/ClassStructure.png)
 
-##### 技术亮点
+#### 技术亮点
 * EventLoop中使用了eventfd来调用wakeup()，让mainloop唤醒subloop的epoll_wait阻塞
 * 在EventLoop中注册回调cb至pendingFunctors_，并在doPendingFunctors中通过swap()的方式，快速换出注册的回调，只在swap()时加锁，减少代码临界区长度，提升效率。（若不通过swap()的方式去处理，而是加锁执行pendingFunctors中的回调，然后解锁，会出现什么问题呢？1. 临界区过大，锁降低了服务器响应效率 2. 若执行的回调中执行queueInLoop需要抢占锁时，会发生死锁）
 * Logger可以设置日志等级，调试代码时可以开启DEBUG打印日志；若启动服务器，由于日志会影响服务器性能，可适当关闭DEBUG相关日志输出
