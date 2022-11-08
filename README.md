@@ -28,12 +28,14 @@
 ## CMake
 由于使用较新的的gcc编译器，所以在`CMakeLists.txt`最开始时要设置以下路径，不然还是会使用的gcc-4.8.4版本的
 ```set (CMAKE_C_COMPILER "/usr/local/bin/gcc")```
+
 ```set (CMAKE_CXX_COMPILER "/usr/local/bin/g++")```
 
 还需要配置一下编译选项，最好选择C++14。
 
 学习到：项目下新建 `build` 文件夹，进入该目录(`cd ./build`)，后就可以运行cmake：
 ```cmake ..```
+
 ```make```
 
 这样项目就不会显得很乱。
@@ -42,24 +44,39 @@
 ## MySQL
 [下载Linux版MySQL安装包](https://downloads.mysql.com/archives/community/)，安装过程：
 ```mkdir mysql```
+
 ```tar -zxvf mysql-8.0.26-1.el7.x86_64.rpm-bundle.tar -C mysql```
+
 ```rpm -ivh mysql-community-common-8.0.26-1.el7.x86_64.rpm --nodeps --force```
+
 ```rpm -ivh mysql-community-client-plugins-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 ```rpm -ivh mysql-community-libs-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 ```rpm -ivh mysql-community-libs-compat-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 ```yum install openssl-devel```
+
 ```rpm -ivh  mysql-community-devel-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 ```rpm -ivh mysql-community-client-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 ```rpm -ivh  mysql-community-server-8.0.26-1.el7.x86_64.rpm  --nodeps --force```
+
 
 MySQL服务相关命令
 ```systemctl start mysqld```
+
 ```systemctl restart mysqld```
+
 ```systemctl stop mysqld```
+
 
 还是因为使用的版本较新，所以`/usr/bin`目录下可能没有`mysqlclient`这个动态库，建议先在根目录搜一下该库的位置，然后链接到`/usr/bin`目录下，使用
 ``` sudo find / -name "*mysqlclient*"```
+
 ``` sudo ln -s  /usr/lib64/mysql/libmysqlclient.so /usr/lib/libmysqlclient.so```
+
 
 mysql配置参考: [CNDS](https://blog.csdn.net/qq_28374489/article/details/123091635)
 
@@ -74,13 +91,20 @@ nginx配置tcp负载均衡，nginx编译加入`–with-stream`参数激活tcp负
 下载tar包
 ```wget http://nginx.org/download/nginx-1.10.1.tar.gz```
 
+
 安装过程：
 ```tar -zxvf nginx-1.10.1.tar.gz```
+
 ```cd nginx-1.10.1```
+
 ```./configure --with-stream```
+
 ```make && sudo make install```
+
 ```cd /usr/local/nginx/conf```
+
 ```sudo vim nginx.conf```
+
 
 添加以下代码：
 ``````
@@ -110,15 +134,20 @@ stream {
 ``````
 启动nginx：
 ```cd /usr/local/nginx/sbin```
+
 ```./nginx```
+
 
 
 ## Redis
 [官网下载](https://redis.io/)
 安装过程：
 ```tar -xzf redis-6.2.6.tar.gz```
+
 ```cd redis-6.2.6```
+
 ```make && sudo make install```
+
 
 redis配置参考 [BLOG](https://www.cnblogs.com/look-word/p/16593094.html)
 
@@ -134,8 +163,11 @@ redis配置参考 [BLOG](https://www.cnblogs.com/look-word/p/16593094.html)
 [下载地址](https://github.com/redis/hiredis/releases)
 安装过程：
 ```tar -xzf hiredis-1.0.2.tar.gz```
+
 ```cd hiredis-1.0.2```
+
 ```make && sudo make install```
+
 
 
 ## muduo
