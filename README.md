@@ -11,7 +11,7 @@
 
 **环境**
   + vscode
-  + centos7
+  + centos-7
   + gcc-10.2.0
   + mysql-8.0.26
   + redis-6.2.6
